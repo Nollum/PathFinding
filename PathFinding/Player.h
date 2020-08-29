@@ -2,7 +2,6 @@
 
 #include <vector>
 
-
 class Player {
 
 public:
@@ -40,9 +39,7 @@ void Player::move(char inp, std::vector< std::vector<char> > grid) {
 		}
 		break;
 	default:
-		std::cout << "Invalid character detected" << std::endl;
+		break;
 	}
-
-	std::cout << this->x << ", " << this->y << std::endl;
 
 }

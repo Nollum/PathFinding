@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <string>
 #include "Player.h"
 
 class Map {
@@ -18,12 +17,10 @@ public:
 	size_t height;
 
 	Map(int width, int height, Player *player, int goal_x, int goal_y);
-
 	void draw();
-
 	void update(Player* player);
-
-	void createBoundaries(Player* player);
+	void createMap(Player* player);
+	void addWalls(std::vector<int> pos);
 
 };
 
@@ -40,9 +37,7 @@ Map::Map(int width, int height, Player *player, int goal_x, int goal_y) {
 		grid.push_back(row);
 	}
 
-	std::cout << "Map created with width of " << this->width << " and height of " << this->height << std::endl;
-
-	this->createBoundaries(player);
+	this->createMap(player);
 
 	this->grid[this->goal_y][this->goal_x] = 'X';
 }
@@ -57,28 +52,28 @@ void Map::draw() {
 	}
 }
 
-void Map::update(Player* player) {
+//void Map::update(Player* player) {
+//
+//	for (size_t j = 0; j < this->height; j++) {
+//		for (size_t i = 0; i < this->width; i++) {
+//			if (j == 0 || i == 0 || j == this->height - 1 || i == this->width - 1) {
+//				this->grid[j][i] = 'W';
+//			}
+//			else {
+//				this->grid[j][i] = '_';
+//
+//			}
+//		}
+//	}
+//	this->grid[player->y][player->x] = 'p';
+//	this->grid[this->goal_y][this->goal_x] = 'X';
+//
+//	for (int i = 1; i < this->width - 2; i++) {
+//		this->grid[10][i] = 'W';
+//	}
+//}
 
-	for (size_t j = 0; j < this->height; j++) {
-		for (size_t i = 0; i < this->width; i++) {
-			if (j == 0 || i == 0 || j == this->height - 1 || i == this->width - 1) {
-				this->grid[j][i] = 'W';
-			}
-			else {
-				this->grid[j][i] = '_';
-
-			}
-		}
-	}
-	this->grid[player->y][player->x] = 'p';
-	this->grid[this->goal_y][this->goal_x] = 'X';
-
-	for (int i = 1; i < this->width - 2; i++) {
-		this->grid[10][i] = 'W';
-	}
-}
-
-void Map::createBoundaries(Player* player) {
+void Map::createMap(Player* player) {
 
 	for (size_t j = 0; j < this->height; j++) {
 		for (size_t i = 0; i < this->width; i++) {
@@ -93,6 +88,10 @@ void Map::createBoundaries(Player* player) {
 			}
 		}
 	}
+}
+
+void Map::addWalls(std::vector<int> pos) {
+	this->grid[pos[1]][pos[0]] = 'W';
 }
 
 
