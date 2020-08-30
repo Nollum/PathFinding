@@ -52,27 +52,6 @@ void Map::draw() {
 	}
 }
 
-//void Map::update(Player* player) {
-//
-//	for (size_t j = 0; j < this->height; j++) {
-//		for (size_t i = 0; i < this->width; i++) {
-//			if (j == 0 || i == 0 || j == this->height - 1 || i == this->width - 1) {
-//				this->grid[j][i] = 'W';
-//			}
-//			else {
-//				this->grid[j][i] = '_';
-//
-//			}
-//		}
-//	}
-//	this->grid[player->y][player->x] = 'p';
-//	this->grid[this->goal_y][this->goal_x] = 'X';
-//
-//	for (int i = 1; i < this->width - 2; i++) {
-//		this->grid[10][i] = 'W';
-//	}
-//}
-
 void Map::createMap(Player* player) {
 
 	for (size_t j = 0; j < this->height; j++) {
